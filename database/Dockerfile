@@ -7,7 +7,4 @@ ENV MYSQL_DATABASE demo
 ENV MYSQL_USER user123
 ENV MYSQL_PASSWORD pass123
 
-#Copiar scripts configuración
-COPY *.sql /docker-entrypoint-initdb.d/
-
 EXPOSE 3306
