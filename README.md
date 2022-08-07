@@ -9,7 +9,7 @@ Fuente [wikipedia](https://es.wikipedia.org/wiki/LimeSurvey)
 ## Montaje de aplicación Limesurvey en contenedores  Docker
 Este readme incluye el manual técnico de dockerización de Limersurvey
 
-###Requisitos
+### Requisitos
 - Maquina VIrtual con Ubuntu Linux
 - Docker
 - Git
@@ -42,4 +42,4 @@ Fuente de [Limesurvey](https://manual.limesurvey.org/Installation_-_LimeSurvey_C
 ### 3. Crear un volumen para la base de datos
 ### 4. Instalar limesurvey
 
-Abrir el navegador web y digitar la url para el ingreso a Limesurvey, en este caso la url es (http://192.168.0.15:8080/limesurvey/) y siga las instrucciones del documento [InstalaciónLimeSurvey CE](https://docs.google.com/document/d/1EhA7h9bwLTnoxUIgOhAA4vpKnB3VWBkMoFnqF0Pb8xU/edit?usp=sharing)
+Abrir el navegador web y digitar la url para el ingreso a Limesurvey, en este caso la url es http://192.168.0.15:8080/limesurvey/ y siga las instrucciones del documento [InstalaciónLimeSurvey CE](https://docs.google.com/document/d/1EhA7h9bwLTnoxUIgOhAA4vpKnB3VWBkMoFnqF0Pb8xU/edit?usp=sharing)
