@@ -1,7 +1,18 @@
 # LIMESURVEY - DOCKER
 
+## Qués es Limesurvey?
+
+LimeSurvey (anteriormente PHPSurveyor) es una aplicación de software libre para la realización de encuestas en línea, escrita en PHP y que utiliza bases de datos MySQL, PostgreSQL o MSSQL. Brinda la posibilidad a usuarios sin conocimientos de programación el desarrollo, publicación y recolección de respuestas de sus encuestas.
+
+Fuente [wikipedia](https://es.wikipedia.org/wiki/LimeSurvey)
+
 ## Montaje de aplicación Limesurvey en contenedores  Docker
 Este readme incluye el manual técnico de dockerización de Limersurvey
+
+###Requisitos
+- Maquina VIrtual con Ubuntu Linux
+- Docker
+- Git
 
 ### Requisitos mínimos para instalar Limesurvey
 - Mínimo 250 MB de espacio en disco.
@@ -30,3 +41,5 @@ Fuente de [Limesurvey](https://manual.limesurvey.org/Installation_-_LimeSurvey_C
 ### 2. Crear la base de datos 
 ### 3. Crear un volumen para la base de datos
 ### 4. Instalar limesurvey
+
+Abrir el navegador web y digitar la url para el ingreso a Limesurvey, en este caso la url es (http://192.168.0.15:8080/limesurvey/) y siga las instrucciones del documento [InstalaciónLimeSurvey CE](https://docs.google.com/document/d/1EhA7h9bwLTnoxUIgOhAA4vpKnB3VWBkMoFnqF0Pb8xU/edit?usp=sharing)
