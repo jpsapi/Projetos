@@ -56,14 +56,14 @@ git clone https://github.com/christiancgil/limesurvey-docker.git
 ```
 cd limesurvey-docker
 cd application
-sudo docker build -t php-lime:1.0 
+sudo docker build -t php-lime:1.0 .
 ```
 
 ### 3. Crear imagen de contenedor bd Mysql
 ```
 cd ..
 cd database
-sudo docker build -t mysql-lime:1.0 
+sudo docker build -t mysql-lime:1.0 .
 ```
 
 ### 4. Verificar creación de las imágenes
