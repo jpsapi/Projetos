@@ -129,4 +129,7 @@ http://ip-virtual-host:8080/limesurvey
 
 #### Instalar limesurvey
 
-Abrir el navegador web y digitar la url para el ingreso a Limesurvey, en este caso la url es http://192.168.0.15:8080/limesurvey/ y siga las instrucciones del documento [InstalaciónLimeSurvey CE](https://docs.google.com/document/d/1EhA7h9bwLTnoxUIgOhAA4vpKnB3VWBkMoFnqF0Pb8xU/edit?usp=sharing)
+Abrir el navegador web y digitar la url para el ingreso a Limesurvey, en este caso la url es http://192.168.0.15:8080/limesurvey/
+
+##### Al ingresar a la url, abrirá la siguiente imagen, en la cual inicia la aplicación y nos permite seleccionar el idioma de la instalación.
+![Iniciar](/assets/img/languaje-selecction.JPG)
