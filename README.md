@@ -6,7 +6,7 @@ LimeSurvey (anteriormente PHPSurveyor) es una aplicación de software libre para
 
 Fuente [wikipedia](https://es.wikipedia.org/wiki/LimeSurvey)
 
-## Montaje de aplicación Limesurvey en contenedores  Docker
+# Montaje de aplicación Limesurvey en contenedores  Docker
 Este readme incluye el manual técnico de dockerización de Limersurvey
 
 ### Requisitos
@@ -37,9 +37,96 @@ Este readme incluye el manual técnico de dockerización de Limersurvey
 
 Fuente de [Limesurvey](https://manual.limesurvey.org/Installation_-_LimeSurvey_CE/es) 
 
-### 1. Crear la imagen de PHP
-### 2. Crear la base de datos 
-### 3. Crear un volumen para la base de datos
-### 4. Instalar limesurvey
+## Procedimiento
+
+### 1. Descargar proyecto ambiente local
+```
+git clone https://github.com/christiancgil/limesurvey-docker.git
+```
+
+### 2.Crear imagen de contenedor web PHP
+```
+cd limesurvey-docker
+cd application
+sudo docker build -t php-lime:1.0 
+```
+
+### 3. Crear imagen de contenedor bd Mysql
+```
+cd ..
+cd database
+sudo docker build -t mysql-lime:1.0 
+```
+
+### 4. Verificar creación de las imágenes
+
+```
+sudo docker images
+```
+
+### 5. Crear volúmenes aplicación
+```
+sudo docker volume create lm-sv-web-data
+sudo docker volume create lm-sv-web-conf
+```
+
+### 6. Crear vólumen de base de datos
+```
+sudo docker volume create lm-sv-db-data
+```
+
+### 7. Verificar la creación de los volumenes
+```
+sudo docker volume ls
+```
+
+### 8. Crear Contenedor PHP
+```
+sudo docker run -d \
+ --name lm-sv-app-container \
+ -p 8080:80 \
+ --mount src=lm-sv-web-data,dst=/var/www/html \
+ --mount src=lm-sv-web-conf,dst=/usr/local/etc/php/ \
+ php-lime:1.0
+ ```
+
+### 9. Crear Contenedor Mysql
+```
+sudo docker run -d \
+ --name lm-sv-db-container \
+ -p 3306:3306 \
+ --mount src=lm-sv-db-data,dst=/var/lib/mysql \
+ mysql-lime:1.0
+ ```
+
+### 10. Verificar la creación de los contenedores
+```
+sudo docker ps
+```
+
+### 11. Crear red para comunicación entre contenedores
+```
+sudo docker network create --attachable lime-network
+```
+
+### 12. Conectar contenedores a nueva red
+```
+sudo docker network connect lime-network lm-sv-db-container
+sudo docker network connect lime-network lm-sv-app-container
+```
+
+### 13. Verificar conectividad aplicación con base de datos
+```
+docker exec -it lm-sv-app-container bash
+mysql -h lm-sv-db-container -P 3306 -u root -p demo
+```
+
+### 14. Configuración Lime Survey
+#### Acceder consola configuración
+```
+http://ip-virtual-host:8080/limesurvey
+```
+
+#### Instalar limesurvey
 
 Abrir el navegador web y digitar la url para el ingreso a Limesurvey, en este caso la url es http://192.168.0.15:8080/limesurvey/ y siga las instrucciones del documento [InstalaciónLimeSurvey CE](https://docs.google.com/document/d/1EhA7h9bwLTnoxUIgOhAA4vpKnB3VWBkMoFnqF0Pb8xU/edit?usp=sharing)
