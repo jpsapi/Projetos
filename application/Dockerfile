@@ -1,36 +1,36 @@
 FROM php:apache
 
-# Instalaci�n librerias requeridas instalaci�n
+# Atualização e instalação de pacotes
 RUN apt-get update && \
 	apt-get install -y vim wget unzip default-mysql-client
 
-# Instalaci�n cliente mysql
+# Instalação cliente Mysql
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Asignar permisos carpeta de descarga medios instalaci�n
+# Mudança de diretório de trabalho e permissão
 WORKDIR /tmp
 RUN chmod 775 -R /tmp/
 
-# Descarga medios de instalaci�n en carpeta de trabajo PHP
-RUN wget -c https://download.limesurvey.org/latest-stable-release/limesurvey5.3.29+220801.zip && \
+# Download LimeSurvey e mudança dos arquivos para webserver
+RUN wget -c https://download.limesurvey.org/latest-master/limesurvey6.4.12+240311.zip && \
 	ls -la && \
-	unzip limesurvey5.3.29+220801.zip && \
+	unzip limesurvey6.4.12+240311.zip && \
 	mv limesurvey /var/www/html/
 
-# Asignar permisos carpeta limesurvey
+# Mudança do diretório de trabalho e permissão
 WORKDIR /var/www/html/limesurvey/
 RUN chown www-data:www-data -R /var/www/html/limesurvey/
 RUN chmod 775 -R /var/www/html/limesurvey/
 
-# Creaci�n de carpeta y asignaci�n de permisos gesti�n php sessions
+# Criação de diretório e atribuição de permissão
 RUN mkdir /usr/local/etc/php/writable && \
 	chmod 777 -R /usr/local/etc/php/writable/
 
-# Actualizaci�n archivo config php con carpeta de trabajo php sessions
+# Atualização Arquivo config php 
 RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini && \
 	echo "session.save_path = \"/usr/local/etc/php/writable"\" >> /usr/local/etc/php/php.ini
 
-# Copiar archivo configuraci�n pre-editado
+# Copiar Arquivo de config para diretorio de trabalho webserver
 COPY limesurvey.conf /etc/apache2/sites-available/
 
 EXPOSE 80
